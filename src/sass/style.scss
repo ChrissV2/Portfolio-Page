@@ -221,7 +221,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	margin: 8em 0;
+	margin: 8em 0 10em 0;
 
 	&__leftSide {
 		display: flex;
@@ -348,7 +348,7 @@ body {
 	margin-bottom: 12em;
 
 	&__title {
-		margin-bottom: 3em;
+		margin-bottom: 2em;
 		font-size: 5rem;
 		z-index: 10;
 		color: white;
@@ -614,12 +614,63 @@ body {
 		}
 
 	}
+
+	.portfolio {
+
+		&__title {
+			margin-bottom: 1em;
+		}
+
+		&__list {
+			margin: 5em auto;
+
+			&-item {
+				height: 400px;
+				width: 530px;
+
+				&--2 {
+					height: 500px;
+					width: 900px;
+				}
+			}
+
+			&-controls {
+				top: 50%;
+				& button {
+					margin: 0 19.5em;
+				}
+			}
+
+		}
+	}
 }
 
 @media (max-width: 1400px) {
 	.header {
 		&__btns {
 			width: 50%;
+		}
+	}
+
+	.portfolio {
+
+		&__list {
+			&-item {
+				height: 400px;
+				width: 360px;
+
+				&--2 {
+					height: 500px;
+					width: 700px;
+				}
+			}
+
+			&-controls {
+				& button {
+					margin: 0 16em;
+				}
+			}
+
 		}
 	}
 }
@@ -632,6 +683,29 @@ body {
 			width: 80%;
 		}
 
+	}
+
+	.portfolio {
+
+		&__list {
+			&-item {
+				height: 400px;
+				width: 200px;
+
+				&--2 {
+					height: 500px;
+					width: 600px;
+				}
+			}
+
+			&-controls {
+				top: 90%;
+				& button {
+					margin: 0 2em;
+				}
+			}
+
+		}
 	}
 }
 
@@ -654,6 +728,33 @@ body {
 		}
 
 	}
+}
+
+@media (max-width: 860px) {
+
+	.portfolio {
+
+		&__list {
+			&-item {
+				height: 300px;
+				width: 150px;
+
+				&--2 {
+					height: 400px;
+					width: 500px;
+				}
+			}
+
+			&-controls {
+				top: 90%;
+				& button {
+					margin: 0 2em;
+				}
+			}
+
+		}
+	}
+
 }
 
 @media (max-width: 768px) {

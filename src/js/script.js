@@ -199,12 +199,13 @@ const removeContactAnimation = () => {
 
 const handleNavAnimation = () => {
 	navMenu.classList.toggle('nav__menu--active')
-	console.log(navMenuItems)
+	body.classList.toggle('overflowHidden')
 	navMenuItems.forEach(item => {
 		item.addEventListener('click', () => {
 			navMenu.classList.remove('nav__menu--active')
 			hamburgerBtn.setAttribute('data-state', 'closed')
 			hamburgerBtn.setAttribute('aria-expanded', 'false')
+			body.classList.remove('overflowHidden')
 		})
 	})
 }

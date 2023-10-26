@@ -52,10 +52,11 @@ const prepareDOMEvents = () => {
 	window.addEventListener('scroll', elementInViewport)
 	portfolioCarousel.setControls()
 	portfolioCarousel.useControls()
+	portfolioCarousel.startAutoSlide()
 	hamburgerBtn.addEventListener('click', handleNavAnimation)
 	hamburgerBtn.addEventListener('click', () => {
 		const currentState = hamburgerBtn.getAttribute('data-state')
-	
+
 		if (!currentState || currentState === 'closed') {
 			hamburgerBtn.setAttribute('data-state', 'opened')
 			hamburgerBtn.setAttribute('aria-expanded', 'true')
@@ -71,6 +72,8 @@ class Carousel {
 		this.carouselContainer = container
 		this.carouselControls = controls
 		this.carouselArray = [...items]
+		this.slideInterval = null
+		this.slideDelay = 3000
 	}
 
 	updateGallery() {
@@ -87,9 +90,11 @@ class Carousel {
 
 	setCurrentState(direction) {
 		if (direction.className == 'portfolio__list-controls-next') {
-			this.carouselArray.push(this.carouselArray.shift())
-		} else {
+			// this.carouselArray.push(this.carouselArray.shift())
 			this.carouselArray.unshift(this.carouselArray.pop())
+		} else {
+			// this.carouselArray.unshift(this.carouselArray.pop())
+			this.carouselArray.push(this.carouselArray.shift())
 		}
 		this.updateGallery()
 	}
@@ -108,8 +113,19 @@ class Carousel {
 			control.addEventListener('click', e => {
 				e.preventDefault()
 				this.setCurrentState(control)
+				this.stopAutoSlide()
 			})
 		})
+	}
+
+	startAutoSlide() {
+		this.slideInterval = setInterval(() => {
+			this.setCurrentState(this.carouselControls[0])
+		}, this.slideDelay)
+	}
+
+	stopAutoSlide() {
+		clearInterval(this.slideInterval)
 	}
 }
 
@@ -181,10 +197,9 @@ const removeContactAnimation = () => {
 	}
 }
 
-
 const handleNavAnimation = () => {
 	navMenu.classList.toggle('nav__menu--active')
-	console.log(navMenuItems);
+	console.log(navMenuItems)
 	navMenuItems.forEach(item => {
 		item.addEventListener('click', () => {
 			navMenu.classList.remove('nav__menu--active')

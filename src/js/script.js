@@ -19,6 +19,7 @@ let portfolioCarousel
 let hamburgerBtn
 let navMenu
 let navMenuItems
+let aboutmeTextBox
 
 const main = () => {
 	prepareDOMElements()
@@ -45,6 +46,7 @@ const prepareDOMElements = () => {
 	hamburgerBtn = document.querySelector('.nav__btn')
 	navMenu = document.querySelector('.nav__menu')
 	navMenuItems = document.querySelectorAll('.nav__menu-item')
+	aboutmeTextBox = document.querySelector('.aboutme__textBox')
 }
 
 const prepareDOMEvents = () => {
@@ -132,14 +134,27 @@ class Carousel {
 window.onpointermove = event => {
 	const { clientX, clientY } = event
 
-	if (scrollY <= 3300 && blob) {
-		blob.animate(
-			{
-				left: `${clientX}px`,
-				top: `${clientY + window.scrollY}px`,
-			},
-			{ duration: 3000, fill: 'forwards' }
-		)
+	if (window.innerWidth > 800) {
+		
+		if (scrollY <= 3100 && blob) {
+			blob.animate(
+				{
+					left: `${clientX}px`,
+					top: `${clientY + window.scrollY}px`,
+				},
+				{ duration: 3000, fill: 'forwards' }
+			)
+		}
+	} else {
+
+		if (scrollY <= 3100 && blob) {
+			blob.animate(
+				{
+					top: `${clientY + window.scrollY}px`,
+				},
+				{ duration: 3000, fill: 'forwards' }
+			)
+		}
 	}
 }
 

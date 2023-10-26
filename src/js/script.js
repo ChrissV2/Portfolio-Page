@@ -16,6 +16,9 @@ let contactFormTextAreaLabel
 let label
 let textAreaLabel
 let portfolioCarousel
+let hamburgerBtn
+let navMenu
+let navMenuItems
 
 const main = () => {
 	prepareDOMElements()
@@ -39,6 +42,9 @@ const prepareDOMElements = () => {
 	contactFormTextArea = document.querySelector('.contact__form-textArea')
 	contactFormTextAreaLabel = document.querySelector('.contact__form-label--msg')
 	portfolioCarousel = new Carousel(sliderContainer, sliderItems, sliderControls)
+	hamburgerBtn = document.querySelector('.nav__btn')
+	navMenu = document.querySelector('.nav__menu')
+	navMenuItems = document.querySelectorAll('.nav__menu-item')
 }
 
 const prepareDOMEvents = () => {
@@ -46,6 +52,18 @@ const prepareDOMEvents = () => {
 	window.addEventListener('scroll', elementInViewport)
 	portfolioCarousel.setControls()
 	portfolioCarousel.useControls()
+	hamburgerBtn.addEventListener('click', handleNavAnimation)
+	hamburgerBtn.addEventListener('click', () => {
+		const currentState = hamburgerBtn.getAttribute('data-state')
+	
+		if (!currentState || currentState === 'closed') {
+			hamburgerBtn.setAttribute('data-state', 'opened')
+			hamburgerBtn.setAttribute('aria-expanded', 'true')
+		} else {
+			hamburgerBtn.setAttribute('data-state', 'closed')
+			hamburgerBtn.setAttribute('aria-expanded', 'false')
+		}
+	})
 }
 
 class Carousel {
@@ -69,10 +87,8 @@ class Carousel {
 
 	setCurrentState(direction) {
 		if (direction.className == 'portfolio__list-controls-next') {
-			// this.carouselArray.unshift(this.carouselArray.pop())
 			this.carouselArray.push(this.carouselArray.shift())
 		} else {
-			// this.carouselArray.push(this.carouselArray.shift())
 			this.carouselArray.unshift(this.carouselArray.pop())
 		}
 		this.updateGallery()
@@ -165,18 +181,17 @@ const removeContactAnimation = () => {
 	}
 }
 
-const button = document.querySelector('.nav__btn')
 
-button.addEventListener('click', () => {
-	const currentState = button.getAttribute('data-state')
-
-	if (!currentState || currentState === 'closed') {
-		button.setAttribute('data-state', 'opened')
-		button.setAttribute('aria-expanded', 'true')
-	} else {
-		button.setAttribute('data-state', 'closed')
-		button.setAttribute('aria-expanded', 'false')
-	}
-})
+const handleNavAnimation = () => {
+	navMenu.classList.toggle('nav__menu--active')
+	console.log(navMenuItems);
+	navMenuItems.forEach(item => {
+		item.addEventListener('click', () => {
+			navMenu.classList.remove('nav__menu--active')
+			hamburgerBtn.setAttribute('data-state', 'closed')
+			hamburgerBtn.setAttribute('aria-expanded', 'false')
+		})
+	})
+}
 
 document.addEventListener('DOMContentLoaded', main)

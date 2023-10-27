@@ -203,18 +203,19 @@ body {
 		margin-top: 4em;
 		width: 35%;
 		z-index: 2;
+
 		&-btn {
 			position: relative;
 			padding: 1em 0;
-			// margin: 0 2em;
 			width: 200px;
+			text-align: center;
 			color: white;
 			font-family: 'Poppins';
 			font-size: 2rem;
 			border-radius: 26px;
-			// border: 1px solid rgb(151, 78, 195);
 			border: 1px solid white;
 			background-color: transparent;
+			text-decoration: none;
 			cursor: pointer;
 			overflow: hidden;
 			transition: transform 0.3s, letter-spacing 0.3s;
@@ -263,7 +264,7 @@ body {
 
 .blob {
 	background-color: white;
-	height: 38vmax;
+	height: 34vmax;
 	aspect-ratio: 1;
 	position: absolute;
 	left: 50%;
@@ -439,11 +440,13 @@ body {
 			position: absolute;
 			height: 500px;
 			width: 630px;
+			top: 10%;
 			border-radius: 16px;
 			object-fit: cover;
 			transition: all 0.5s ease-in-out;
 			z-index: 11;
 			opacity: 0.6;
+			cursor: pointer;
 
 			&--1 {
 				left: 15%;
@@ -454,6 +457,7 @@ body {
 				height: 600px;
 				width: 1000px;
 				left: 50%;
+				top: 2%;
 				transform: translateX(-50%);
 				opacity: 1;
 				z-index: 12;
@@ -677,7 +681,7 @@ body {
 			}
 
 			&-controls {
-				top: 54%;
+				top: 49%;
 				& button {
 					margin: 0 20em;
 				}
@@ -798,15 +802,17 @@ body {
 			&-item {
 				height: 300px;
 				width: 150px;
+				top: 20%;
 
 				&--2 {
 					height: 400px;
 					width: 500px;
+					top: 12%;
 				}
 			}
 
 			&-controls {
-				top: 90%;
+				top: 85%;
 				& button {
 					margin: 0 2em;
 				}
@@ -863,6 +869,11 @@ body {
 }
 
 @media (max-width: 576px) {
+
+	.blob {
+		display: none;
+	}
+
 	.nav {
 		padding: 3em 2em;
 		margin: 0 2em;
@@ -870,6 +881,7 @@ body {
 
 	.header {
 		min-height: 65vh;
+		margin-top: 5em;
 
 		&__btns {
 			&-btn {
@@ -923,6 +935,7 @@ body {
 				&--2 {
 					height: 350px;
 					width: 450px;
+					top: 16%;
 				}
 			}
 

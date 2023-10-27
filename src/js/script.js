@@ -134,8 +134,8 @@ class Carousel {
 window.onpointermove = event => {
 	const { clientX, clientY } = event
 
-	if (window.innerWidth > 800) {
-		
+	if(innerWidth > 577) {
+
 		if (scrollY <= 3100 && blob) {
 			blob.animate(
 				{
@@ -145,17 +145,10 @@ window.onpointermove = event => {
 				{ duration: 3000, fill: 'forwards' }
 			)
 		}
-	} else {
 
-		if (scrollY <= 3100 && blob) {
-			blob.animate(
-				{
-					top: `${clientY + window.scrollY}px`,
-				},
-				{ duration: 3000, fill: 'forwards' }
-			)
-		}
 	}
+
+
 }
 
 function elementInViewport() {

@@ -31,9 +31,9 @@
 
     <nav class="nav__menu">
 
-            <a href="#aboutme" class="nav__menu-item">About Me</a>
-            <a href="#portfolio" class="nav__menu-item">Portfolio</a>
-            <a href="#contact" class="nav__menu-item">Contact</a>
+        <a href="#aboutme" class="nav__menu-item">About Me</a>
+        <a href="#portfolio" class="nav__menu-item">Portfolio</a>
+        <a href="#contact" class="nav__menu-item">Contact</a>
 
     </nav>
 
@@ -52,8 +52,8 @@
             </div>
 
             <div class="header__btns">
-                <button class="header__btns-btn">Portfolio</button>
-                <button class="header__btns-btn">Hire Me</button>
+                <a href="#portfolio" class="header__btns-btn">Portfolio</a>
+                <a href="#" class="header__btns-btn">Hire Me</a>
             </div>
 
         </header>
@@ -107,14 +107,20 @@
 
                 <div class="portfolio__list">
 
-                    <img src="./dist/img/screenshotEdited2.png" alt=""
-                        class="portfolio__list-item portfolio__list-item--1" data-index="1">
+                    <a href="https://chrissv2.github.io/MobileApp/" class="portfolio__list-item-wrapper">
+                        <img src="./dist/img/screenshotEdited2.png" alt=""
+                            class="portfolio__list-item portfolio__list-item--1" data-index="1">
+                    </a>
 
-                    <img src="./dist/img/screenshot2.png" alt="" class="portfolio__list-item portfolio__list-item--2"
-                        data-index="2">
+                    <a href="https://chrissv2.github.io/Pan-Ekspres/" class="portfolio__list-item-wrapper">
+                        <img src="./dist/img/screenshot2.png" alt=""
+                            class="portfolio__list-item portfolio__list-item--2" data-index="2">
+                    </a>
 
-                    <img src="./dist/img/screenshot3.png" alt="" class="portfolio__list-item portfolio__list-item--3"
-                        data-index="3">
+                    <a href="https://chrissv2.github.io/Forest-Group/" class="portfolio__list-item-wrapper">
+                        <img src="./dist/img/screenshot3.png" alt=""
+                            class="portfolio__list-item portfolio__list-item--3" data-index="3">
+                    </a>
 
                 </div>
 
@@ -129,21 +135,21 @@
 
                 <h2 class="contact__title">Contact Me</h2>
 
-                <form class="contact__form">
+                <form class="contact__form" action="./mail.php" method="post">
 
                     <div class="contact__form-upperPart">
 
                         <div class="contact__form-box">
 
                             <label for="name" class="contact__form-label contact__form-label--name">Name</label>
-                            <input type="text" id="name" class="contact__form-input">
+                            <input type="text" id="name" name="name" class="contact__form-input">
 
                         </div>
 
                         <div class="contact__form-box">
 
                             <label for="email" class="contact__form-label contact__form-label--mail">E-mail</label>
-                            <input type="email" id="email" class="contact__form-input">
+                            <input type="email" id="email" name="email" class="contact__form-input">
 
                         </div>
 
@@ -154,13 +160,13 @@
                         <div class="contact__form-box contact__form-box--textArea">
 
                             <label for="msg" class="contact__form-label contact__form-label--msg">Message</label>
-                            <textarea name="msg" id="msg" class="contact__form-textArea"></textarea>
+                            <textarea name="msg" id="msg" name="message" class="contact__form-textArea"></textarea>
 
                         </div>
 
                     </div>
 
-                    <button class="contact__form-btn specialBtn">Send Form</button>
+                    <button type="submit" name="send" class="contact__form-btn specialBtn">Send Form</button>
 
 
                 </form>

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dive into my portfolio, where ambition fuels innovative frontend development.">
+    <link rel="icon" href="dist/img/icons/technology.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&family=Poppins:wght@200;400;700&display=swap"
@@ -18,7 +20,8 @@
         <nav class="nav">
             <a href="#" class="nav__logo">CHR Media</a>
 
-            <button class="nav__btn" aria-controls="primary-navigation" aria-expanded="false">
+            <button class="nav__btn" aria-controls="primary-navigation" aria-expanded="false"
+                aria-label="Nav Menu Button">
                 <svg stroke="var(--button-color)" fill="none" class="hamburger" viewBox="-10 -10 120 120" width="250">
                     <path class="line" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
                         d="m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70">
@@ -53,7 +56,7 @@
 
             <div class="header__btns">
                 <a href="#portfolio" class="header__btns-btn">Portfolio</a>
-                <a href="#" class="header__btns-btn">Hire Me</a>
+                <a href="https://www.linkedin.com/in/krystian-chrzanowski-406962298/" target="_blank" rel="noopener" class="header__btns-btn">Hire Me</a>
             </div>
 
         </header>
@@ -71,10 +74,10 @@
 
                     <div class="aboutme__container" id="aboutmePhoto">
 
-                        <img src="./dist/img/code2.jpg" alt="" class="aboutme__container-photo">
-                        <img src="./dist/img/code2.jpg" alt="" class="aboutme__container-photo">
-                        <img src="./dist/img/code2.jpg" alt="" class="aboutme__container-photo">
-                        <img src="./dist/img/code2.jpg" alt="" class="aboutme__container-photo">
+                        <img src="./dist/img/code2.jpg" alt="3D photo of myself" class="aboutme__container-photo">
+                        <img src="./dist/img/code2.jpg" alt="3D photo of myself" class="aboutme__container-photo">
+                        <img src="./dist/img/code2.jpg" alt="3D photo of myself" class="aboutme__container-photo">
+                        <img src="./dist/img/code2.jpg" alt="3D photo of myself" class="aboutme__container-photo">
 
                     </div>
 
@@ -85,15 +88,14 @@
                     <div class="aboutme__textBox">
 
                         <h2 class="aboutme__textBox-title">About Me</h2>
-                        <p class="aboutme__textBox-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Quae in dolorem voluptas minus, rerum exercitationem beatae, maiores soluta placeat libero
-                            debitis reprehenderit amet natus consectetur quis, iure cum inventore nisi quos! Distinctio
-                            harum eos cupiditate quidem beatae facere iste nemo quia enim, tempora error libero omnis
-                            labore dolores accusantium deserunt laudantium inventore cum earum modi voluptas molestiae
-                            temporibus id? Mollitia quidem at iusto modi, tempora molestiae dolor aliquid error esse,
-                            reprehenderit cum ipsa? Consequatur mollitia, sequi possimus ullam eum, dolor a
-                            reprehenderit qui nisi repellendus sit, quae optio. Magni possimus amet ipsum nobis soluta
-                            quam numquam repudiandae deleniti fugit dignissimos.</p>
+                        <p class="aboutme__textBox-paragraph">I'm Krystian, a highly ambitious Frontend Developer
+                            continually driven by an unwavering commitment to my goals. I'm passionately dedicated to
+                            mastering the ever-evolving world of web development through a lifelong love of learning. My
+                            skill set includes expertise in HTML/CSS, JavaScript, and various frontend frameworks, all
+                            guided by a design sensibility that balances functionality and aesthetics. Whether you're
+                            seeking a collaborator on an exciting project or simply want to explore the latest trends in
+                            web development, I'm eager to connect and contribute my expertise to your goals. Thank you
+                            for visiting, and let's embark on this journey together towards digital excellence.</p>
 
                     </div>
 
@@ -108,26 +110,23 @@
                 <div class="portfolio__list">
 
                     <a href="https://chrissv2.github.io/MobileApp/" class="portfolio__list-item-wrapper">
-                        <img src="./dist/img/screenshotEdited2.png" alt=""
+                        <img src="./dist/img/screenshotEdited2.png" alt="Screenshot of one of my portfolio pages"
                             class="portfolio__list-item portfolio__list-item--1" data-index="1">
                     </a>
 
                     <a href="https://chrissv2.github.io/Pan-Ekspres/" class="portfolio__list-item-wrapper">
-                        <img src="./dist/img/screenshot2.png" alt=""
+                        <img src="./dist/img/screenshot2.png" alt="Screenshot of one of my portfolio pages"
                             class="portfolio__list-item portfolio__list-item--2" data-index="2">
                     </a>
 
                     <a href="https://chrissv2.github.io/Forest-Group/" class="portfolio__list-item-wrapper">
-                        <img src="./dist/img/screenshot3.png" alt=""
+                        <img src="./dist/img/screenshot3.png" alt="Screenshot of one of my portfolio pages"
                             class="portfolio__list-item portfolio__list-item--3" data-index="3">
                     </a>
 
                 </div>
 
-                <div class="portfolio__list-controls">
-                    <!-- <img src="./dist/img/icons/arrow-right-bold.svg" alt="" class="portfolio__list-controls-next">
-                    <img src="./dist/img/icons/arrow-left-bold.svg" alt="" class="portfolio__list-controls-previous"> -->
-                </div>
+                <div class="portfolio__list-controls"></div>
 
             </section>
 
@@ -142,14 +141,20 @@
                         <div class="contact__form-box">
 
                             <label for="name" class="contact__form-label contact__form-label--name">Name</label>
-                            <input type="text" id="name" name="name" class="contact__form-input">
+                            <span class="contact__form-errorMsg contact__form-errorMsg--name">*Wprowadź imię i
+                                nazwisko</span>
+                            <input type="text" id="name" name="name"
+                                class="contact__form-input contact__form-input--name">
 
                         </div>
 
                         <div class="contact__form-box">
 
                             <label for="email" class="contact__form-label contact__form-label--mail">E-mail</label>
-                            <input type="email" id="email" name="email" class="contact__form-input">
+                            <span class="contact__form-errorMsg contact__form-errorMsg--mail">*Wprowadź poprawnie adres
+                                E-mail</span>
+                            <input type="email" id="email" name="email"
+                                class="contact__form-input contact__form-input--mail">
 
                         </div>
 
@@ -160,7 +165,9 @@
                         <div class="contact__form-box contact__form-box--textArea">
 
                             <label for="msg" class="contact__form-label contact__form-label--msg">Message</label>
-                            <textarea name="msg" id="msg" name="message" class="contact__form-textArea"></textarea>
+                            <span class="contact__form-errorMsg contact__form-errorMsg--message">*Wprowadź
+                                wiadomość</span>
+                            <textarea id="msg" name="message" class="contact__form-textArea"></textarea>
 
                         </div>
 
@@ -170,6 +177,27 @@
 
 
                 </form>
+
+                <div class="contact__modal">
+
+                    <img src="dist/img/icons/check.svg" alt="Icon of successful send"
+                        class="contact__modal-icon">
+                    <span class="contact__modal-title">Thank You</span>
+                    <button class="contact__modal-closeBtn">Close</button>
+    
+                </div>
+
+
+            </section>
+
+            <section class="icons">
+
+                <div class="icons__box">
+
+                    <a href="https://github.com/ChrissV2" target="_blank" rel="noopener"><img src="./dist/img/icons/github.svg" alt="" class="icons__box-icon"></a>
+                    <a href="https://www.linkedin.com/in/krystian-chrzanowski-406962298/" target="_blank" rel="noopener"><img src="./dist/img/icons/linkedin.svg" alt="" class="icons__box-icon"></a>
+
+                </div>
 
             </section>
 

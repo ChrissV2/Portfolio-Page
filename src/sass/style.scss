@@ -78,13 +78,15 @@ body {
 			color: white;
 			text-decoration: none;
 			z-index: 4;
+			outline: none;
 
 			&,
 			&::after {
 				transition: color 0.5s, height 0.5s;
 			}
 
-			&:hover {
+			&:hover,
+			&:focus {
 				color: black;
 			}
 
@@ -101,7 +103,8 @@ body {
 				z-index: -1;
 			}
 
-			&:hover::after {
+			&:hover::after,
+			&:focus::after {
 				height: 100%;
 			}
 
@@ -219,6 +222,7 @@ body {
 			cursor: pointer;
 			overflow: hidden;
 			transition: transform 0.3s, letter-spacing 0.3s;
+			outline: none;
 
 			&::before {
 				content: '';
@@ -234,11 +238,13 @@ body {
 				transition: 0.8s;
 			}
 
-			&:hover::before {
+			&:hover::before,
+			&:focus::before {
 				left: 130%;
 			}
 
-			&:hover {
+			&:hover,
+			&:focus {
 				transform: scale(1.1);
 				letter-spacing: 0.2rem;
 			}
@@ -277,7 +283,7 @@ body {
 }
 
 .blur {
-	height: 7500px;
+	height: 8000px;
 	width: 100%;
 	position: absolute;
 	z-index: 2;
@@ -501,7 +507,8 @@ body {
 				left: 0;
 				transition: left 0.15s ease-in-out;
 
-				&:hover {
+				&:hover,
+				&:focus {
 					left: -30px;
 				}
 			}
@@ -512,7 +519,8 @@ body {
 				right: 0;
 				transition: right 0.15s ease-in-out;
 
-				&:hover {
+				&:hover,
+				&:focus {
 					right: -30px;
 				}
 			}
@@ -523,6 +531,7 @@ body {
 //// Contact
 
 .contact {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -601,6 +610,20 @@ body {
 			resize: vertical;
 		}
 
+		&-errorMsg {
+			position: absolute;
+			top: 115%;
+			font-size: 1.5rem;
+			font-weight: bold;
+			color: white;
+			opacity: 0;
+			transition: opacity 0.3s;
+
+			&--active {
+				opacity: 1;
+			}
+		}
+
 		&-btn {
 			position: relative;
 			padding: 1em 0;
@@ -614,6 +637,7 @@ body {
 			cursor: pointer;
 			overflow: hidden;
 			transition: transform 0.3s, letter-spacing 0.3s;
+			outline: none;
 
 			&::before {
 				content: '';
@@ -629,22 +653,106 @@ body {
 				transition: 0.8s;
 			}
 
-			&:hover::before {
+			&:hover::before,
+			&:focus::before {
 				left: 130%;
 			}
 
-			&:hover {
+			&:hover,
+			&:focus {
 				transform: scale(1.1);
 				letter-spacing: 0.2rem;
 			}
 		}
 
 		&-box {
+			position: relative;
 			display: flex;
 			flex-direction: column;
 
 			&--textArea {
 				width: 68.6%;
+			}
+		}
+	}
+
+	&__modal {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		top: 30%;
+		transform: translate(-50%, -50%);
+		width: 50%;
+		height: 70%;
+		// background-color: rgba(0,0,0,.4);
+		backdrop-filter: blur(20px);
+		border-radius: 26px;
+		border: 2px solid white;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		z-index: 200;
+		transition: transform 0.5s, opacity 0.5s;
+		transform: scale(0);
+		opacity: 0;
+
+		&-icon {
+			width: 180px;
+			margin-bottom: 3em;
+		}
+
+		&-title {
+			margin: 0 0.5em 1em 0.5em;
+			font-size: 4rem;
+			font-weight: bold;
+			color: white;
+		}
+
+		&-closeBtn {
+			padding: 1em 3em;
+			font-size: 2.5rem;
+			font-family: 'poppins';
+			font-weight: bold;
+			border-radius: 16px;
+			border: 2px solid transparent;
+			transition: color 0.3s, background-color 0.3s, border 0.7s;
+			cursor: pointer;
+
+			&:hover {
+				color: white;
+				background-color: transparent;
+				border: 2px solid white;
+			}
+		}
+
+		&--active {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+}
+
+/////// ICONS
+
+.icons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20em;
+
+	&__box {
+		display: flex;
+		justify-content: center;
+		width: 50%;
+		z-index: 10;
+
+		&-icon {
+			width: 60px;
+			margin: 0 2em;
+			transition: transform 0.3s;
+
+			&:hover {
+				transform: scale(1.1);
 			}
 		}
 	}
@@ -765,6 +873,10 @@ body {
 				width: 80%;
 			}
 		}
+
+		&__modal {
+			width: 70%;
+		}
 	}
 }
 
@@ -819,6 +931,12 @@ body {
 			}
 		}
 	}
+
+	.contact {
+		&__modal {
+			width: 90%;
+		}
+	}
 }
 
 @media (max-width: 768px) {
@@ -865,11 +983,26 @@ body {
 				}
 			}
 		}
+
+		&__modal {
+			height: 50%;
+			&-icon {
+				width: 130px;
+				height: 130px;
+			}
+
+			&-title {
+				font-size: 3.5rem;
+			}
+
+			&-closeBtn {
+				padding: 0.6em 3em;
+			}
+		}
 	}
 }
 
 @media (max-width: 576px) {
-
 	.blob {
 		display: none;
 	}

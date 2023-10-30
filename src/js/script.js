@@ -20,10 +20,22 @@ let hamburgerBtn
 let navMenu
 let navMenuItems
 let aboutmeTextBox
+let contactInputs
+let nameInput
+let mailInput
+let errorCount = 0
+let errorMsgName
+let errorMsgMail
+let errorMsgTextArea
+let contactFromBtn
+let contactForm
+let modal
+let closeModalBtn
 
 const main = () => {
 	prepareDOMElements()
 	prepareDOMEvents()
+	checkUrlParameters()
 }
 
 const prepareDOMElements = () => {
@@ -47,10 +59,21 @@ const prepareDOMElements = () => {
 	navMenu = document.querySelector('.nav__menu')
 	navMenuItems = document.querySelectorAll('.nav__menu-item')
 	aboutmeTextBox = document.querySelector('.aboutme__textBox')
+	contactInputs = document.querySelectorAll('.contact__form-input')
+	nameInput = document.querySelector('.contact__form-input--name')
+	mailInput = document.querySelector('.contact__form-input--mail')
+	errorMsgName = document.querySelector('.contact__form-errorMsg--name')
+	errorMsgMail = document.querySelector('.contact__form-errorMsg--mail')
+	errorMsgTextArea = document.querySelector('.contact__form-errorMsg--message')
+	contactFromBtn = document.querySelector('.contact__form-btn')
+	contactForm = document.querySelector('.contact__form')
+	modal = document.querySelector('.contact__modal')
+	closeModalBtn = document.querySelector('.contact__modal-closeBtn')
 }
 
 const prepareDOMEvents = () => {
 	body.addEventListener('click', handleContactAnimation)
+	body.addEventListener('focus', handleContactAnimation)
 	window.addEventListener('scroll', elementInViewport)
 	portfolioCarousel.setControls()
 	portfolioCarousel.useControls()
@@ -67,6 +90,12 @@ const prepareDOMEvents = () => {
 			hamburgerBtn.setAttribute('aria-expanded', 'false')
 		}
 	})
+	contactInputs.forEach(input => {
+		input.addEventListener('focus', handleContactAnimation)
+	})
+	contactFormTextArea.addEventListener('focus', handleContactAnimation)
+	contactFromBtn.addEventListener('click', countErrors)
+	closeModalBtn.addEventListener('click', closeModal)
 }
 
 class Carousel {
@@ -134,8 +163,7 @@ class Carousel {
 window.onpointermove = event => {
 	const { clientX, clientY } = event
 
-	if(innerWidth > 577) {
-
+	if (innerWidth > 577) {
 		if (scrollY <= 3100 && blob) {
 			blob.animate(
 				{
@@ -145,10 +173,7 @@ window.onpointermove = event => {
 				{ duration: 3000, fill: 'forwards' }
 			)
 		}
-
 	}
-
-
 }
 
 function elementInViewport() {
@@ -192,8 +217,6 @@ const removeContactAnimation = () => {
 	contactFormLabels.forEach(label => {
 		const inputId = label.getAttribute('for')
 		const inputElement = document.getElementById(inputId)
-		// console.log(inputId);
-		// console.log(inputElement);
 
 		if (inputElement.value.trim() === '') {
 			label.classList.remove('contact__form-label--moved')
@@ -216,6 +239,78 @@ const handleNavAnimation = () => {
 			body.classList.remove('overflowHidden')
 		})
 	})
+}
+
+const clearInputs = () => {
+	nameInput.value = ''
+	mailInput.value = ''
+	contactFormTextArea.value = ''
+}
+
+const validateName = () => {
+	if (nameInput.value === '') {
+		errorMsgName.classList.add('contact__form-errorMsg--active')
+		errorCount++
+	} else {
+		errorMsgName.classList.remove('contact__form-errorMsg--active')
+	}
+}
+
+const validateMail = () => {
+	const reg =
+		/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,4})$/i
+
+	if (reg.test(mailInput.value)) {
+		errorMsgMail.classList.remove('contact__form-errorMsg--active')
+	} else {
+		errorMsgMail.classList.add('contact__form-errorMsg--active')
+		errorCount++
+	}
+}
+
+const validateTextArea = () => {
+	if (contactFormTextArea.value === '') {
+		errorMsgTextArea.classList.add('contact__form-errorMsg--active')
+		errorCount++
+	} else {
+		errorMsgTextArea.classList.remove('contact__form-errorMsg--active')
+	}
+}
+
+const countErrors = e => {
+	e.preventDefault()
+
+	validateName()
+	validateMail()
+	validateTextArea()
+
+	if (errorCount !== 0) {
+		errorCount = 0
+	} else if (errorCount === 0) {
+		contactForm.submit()
+		clearInputs()
+		errorCount = 0
+	}
+}
+
+const checkUrlParameters = () => {
+	if (document.location.search === '?mail_status=sent') {
+		modal.classList.add('contact__modal--active')
+		body.classList.add('overflowHidden')
+	} else if (document.location.search === '?mail_status=error') {
+		alert('Błąd wysyłania wiadomości')
+		console.log('Błąd')
+	}
+
+	setTimeout(() => {
+		const newUrl = window.location.pathname + window.location.search.replace('?mail_status=sent', '')
+		window.history.replaceState({}, document.title, newUrl)
+	}, 3000)
+}
+
+const closeModal = () => {
+	modal.classList.remove('contact__modal--active')
+	body.classList.remove('overflowHidden')
 }
 
 document.addEventListener('DOMContentLoaded', main)

@@ -163,7 +163,7 @@ class Carousel {
 window.onpointermove = event => {
 	const { clientX, clientY } = event
 
-	if (innerWidth > 577) {
+	if (innerWidth > 860) {
 		if (scrollY <= 3100 && blob) {
 			blob.animate(
 				{

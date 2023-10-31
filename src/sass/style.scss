@@ -908,6 +908,11 @@ body {
 }
 
 @media (max-width: 860px) {
+
+	.blob {
+		display: none;
+	}
+
 	.portfolio {
 		&__list {
 			margin-top: 0;
@@ -1003,9 +1008,6 @@ body {
 }
 
 @media (max-width: 576px) {
-	.blob {
-		display: none;
-	}
 
 	.nav {
 		padding: 3em 2em;
